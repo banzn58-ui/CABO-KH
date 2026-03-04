@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camboo KH</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;700&family=Poppins:wght@600&display=swap" rel="stylesheet">
+    <style>
+        :root { --gaming-red: #ff4757; --dark-bg: #1e272e; --card-bg: #2f3542; --text-white: #ffffff; }
+        body { font-family: 'Kantumruy Pro', sans-serif; background-color: #000; margin: 0; display: flex; justify-content: center; color: var(--text-white); }
+        
+        /* កំណត់រាងទូរស័ព្ទ */
+        .phone-container { width: 375px; height: 100vh; background: var(--dark-bg); overflow-y: auto; box-shadow: 0 0 40px rgba(0,0,0,0.8); position: relative; }
+
+        /* Header & Account */
+        header { background: var(--card-bg); padding: 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--gaming-red); sticky: top; }
+        .user-profile { display: flex; align-items: center; gap: 8px; font-size: 12px; border: 1px solid #555; padding: 4px 10px; border-radius: 20px; }
+        
+        .promo-banner { background: linear-gradient(90deg, #ff4757, #ff6b81); padding: 15px; margin: 10px; border-radius: 12px; font-weight: bold; font-size: 14px; }
+
+        /* Product Grid */
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 12px; }
+        .product-card { background: var(--card-bg); border-radius: 15px; padding: 10px; text-align: center; border: 1px solid #3d444b; transition: 0.3s; }
+        .product-card:active { transform: scale(0.95); }
+        .product-card img { width: 100%; height: 100px; object-fit: contain; margin-bottom: 8px; }
+        .p-name { font-size: 13px; font-weight: bold; display: block; height: 35px; overflow: hidden; }
+        .p-price { color: var(--gaming-red); font-weight: bold; margin: 5px 0; display: block; }
+        .btn-add { background: var(--gaming-red); color: white; border: none; padding: 6px 15px; border-radius: 8px; cursor: pointer; font-size: 11px; width: 100%; }
+
+        /* Checkout Form & Cart */
+        .checkout-panel { background: white; color: #333; margin-top: 20px; border-radius: 25px 25px 0 0; padding: 20px; }
+        .checkout-panel h3 { margin-top: 0; color: var(--gaming-red); border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        input { width: 100%; padding: 12px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 10px; box-sizing: border-box; font-family: inherit; }
+        
+        .total-box { background: #f1f2f6; padding: 15px; border-radius: 12px; margin-bottom: 15px; }
+        .row { display: flex; justify-content: space-between; margin-bottom: 5px; }
+
+        .btn-confirm { background: #2f3542; color: white; border: none; padding: 15px; border-radius: 12px; width: 100%; font-size: 16px; font-weight: bold; cursor: pointer; }
+        
+        .cart-bar { position: fixed; bottom: 0; width: 375px; background: #ff4757; color: white; padding: 15px; text-align: center; font-weight: bold; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+<div class="phone-container">
+    <header>
+        <div style="font-weight: bold; color: var(--gaming-red);">CAMBO KH</div>
+        <div class="user-profile">
+            <span>គណនីមិនចាំបាច់</span>
+        </div>
+    </header>
+
+    <div class="promo-banner">🔥 បញ្ចុះតម្លៃ 20% សម្រាប់ Gaming Phone!</div>
+
+    <div class="grid">
+        <div class="product-card">
+            <img src="https://m.media-amazon.com/images/I/41-lS0v3f+L.jpg">
+            <span class="p-name">ROG Phone 8 Pro</span>
+            <span class="p-price">$1,199</span>
+            <button class="btn-add" onclick="addToCart('ROG Phone 8 Pro', 1199)">ជ្រើសរើស</button>
+        </div>
+        <div class="product-card">
+            <img src="https://m.media-amazon.com/images/I/61pS+D3kKUL._AC_SL1500_.jpg">
+            <span class="p-name">RedMagic 9 Pro</span>
+            <span class="p-price">$899</span>
+            <button class="btn-add" onclick="addToCart('RedMagic 9 Pro', 899)">ជ្រើសរើស</button>
+        </div>
+        <div class="product-card">
+            <img src="https://m.media-amazon.com/images/I/71u9S+HqS2L._AC_SL1500_.jpg">
+            <span class="p-name">Black Shark 5 Pro</span>
+            <span class="p-price">$749</span>
+            <button class="btn-add" onclick="addToCart('Black Shark 5 Pro', 749)">ជ្រើសរើស</button>
+        </div>
+        <div class="product-card">
+            <img src="https://m.media-amazon.com/images/I/61NfI-Uof7L._AC_SL1500_.jpg">
+            <span class="p-name">iPhone 15 Pro Max</span>
+            <span class="p-price">$1,299</span>
+            <button class="btn-add" onclick="addToCart('iPhone 15 Pro Max', 1299)">ជ្រើសរើស</button>
+        </div>
+        <div class="product-card">
+            <img src="https://m.media-amazon.com/images/I/71Vf-M9A6FL._AC_SL1500_.jpg">
+            <span class="p-name">S24 Ultra Gaming</span>
+            <span class="p-price">$1,150</span>
+            <button class="btn-add" onclick="addToCart('S24 Ultra Gaming', 1150)">ជ្រើសរើស</button>
+        </div>
+        <div class="product-card">
+            <img src="https://m.media-amazon.com/images/I/61K-0O8T2iL._AC_SL1000_.jpg">
+            <span class="p-name">POCO F6 Pro</span>
+            <span class="p-price">$499</span>
+            <button class="btn-add" onclick="addToCart('POCO F6 Pro', 499)">ជ្រើសរើស</button>
+        </div>
+        <div class="product-card">
+            <img src="https://m.media-amazon.com/images/I/71f8o0X8i3L._AC_SL1500_.jpg">
+            <span class="p-name">Infinix GT 20 Pro</span>
+            <span class="p-price">$320</span>
+            <button class="btn-add" onclick="addToCart('Infinix GT 20 Pro', 320)">ជ្រើសរើស</button>
+        </div>
+        <div class="product-card">
+            <img src="https://m.media-amazon.com/images/I/61p-vD9X6CL._AC_SL1500_.jpg">
+            <span class="p-name">Nubia Z60 Ultra</span>
+            <span class="p-price">$799</span>
+            <button class="btn-add" onclick="addToCart('Nubia Z60 Ultra', 799)">ជ្រើសរើស</button>
+        </div>
+    </div>
+
+    <div class="checkout-panel" id="payment">
+        <h3>🛒 គិតលុយ (Checkout)</h3>
+        <div class="total-box">
+            <div class="row"><span>ចំនួនទំនិញ:</span> <span id="qty">0</span></div>
+            <div class="row"><span>តម្លៃសរុប:</span> <span id="total-price" style="color:var(--gaming-red); font-weight:bold;">$0</span></div>
+        </div>
+
+        <input type="text" id="name" placeholder="ឈ្មោះអ្នកទទួល">
+        <input type="date" id="dob">
+        <input type="text" id="loc" placeholder="អាសយដ្ឋានដឹកជញ្ជូន">
+        <p style="font-size:11px; color:#666;">រូបអត្តសញ្ញាណប័ណ្ណ:</p>
+        <input type="file" id="idImg">
+
+        <button class="btn-confirm" onclick="checkout()">បញ្ជាក់ការទិញ</button>
+        <div style="height: 60px;"></div>
+    </div>
+
+    <div class="cart-bar" onclick="location.href='#payment'">
+        មើលកន្ត្រកទំនិញ (<span id="count">0</span>)
+    </div>
+</div>
+
+<script>
+    let cart = [];
+    let totalPrice = 0;
+
+    function addToCart(name, price) {
+        cart.push(name);
+        totalPrice += price;
+        updateUI();
+    }
+
+    function updateUI() {
+        document.getElementById('count').innerText = cart.length;
+        document.getElementById('qty').innerText = cart.length;
+        document.getElementById('total-price').innerText = "$" + totalPrice;
+    }
+
+    function checkout() {
+        const name = document.getElementById('name').value;
+        const loc = document.getElementById('loc').value;
+
+        if (cart.length == 0 || !name || !loc) {
+            alert("សូមជ្រើសរើសទំនិញ និងបំពេញព័ត៌មានឱ្យគ្រប់!");
+            return;
+        }
+
+        const order = {
+            customer: name,
+            items: cart,
+            total: totalPrice,
+            dob: document.getElementById('dob').value,
+            loc: loc,
+            time: new Date().toLocaleString()
+        };
+
+        localStorage.setItem('lastOrder', JSON.stringify(order));
+        alert("🎉 ការកម្មង់ទិញចំនួន $" + totalPrice + " ត្រូវបានផ្ញើទៅកាន់អ្នកលក់!");
+        location.reload();
+    }
+</script>
+
+</body>
+</html>
