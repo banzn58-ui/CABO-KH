@@ -1,1 +1,73 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Admin - Seller</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --admin: #1e90ff; --bg: #f1f2f6; }
+        body { font-family: 'Kantumruy Pro', sans-serif; background-color: #2f3542; margin: 0; display: flex; justify-content: center; }
+        
+        .phone-screen { 
+            width: 375px; height: 100vh; background: var(--bg); position: relative; 
+            overflow-y: auto; border-radius: 5px;
+        }
 
+        header { background: var(--admin); padding: 20px; text-align: center; color: white; }
+        header h2 { margin: 0; font-size: 18px; }
+
+        .order-notif { 
+            background: white; margin: 15px; padding: 15px; border-radius: 15px; 
+            border-left: 5px solid var(--admin); box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .order-notif h4 { margin: 0 0 10px 0; color: #2f3542; }
+        .detail { font-size: 13px; margin-bottom: 5px; color: #57606f; }
+        
+        .items-box { background: #f8f9fa; padding: 10px; border-radius: 8px; margin: 10px 0; font-size: 13px; }
+        
+        .btn-ship { 
+            background: var(--admin); color: white; border: none; padding: 12px; 
+            border-radius: 10px; width: 100%; font-weight: bold; cursor: pointer;
+        }
+        .empty { text-align: center; margin-top: 50px; color: #a4b0be; font-size: 14px; }
+    </style>
+</head>
+<body>
+
+<div class="phone-screen">
+    <header><h2>ការកម្មង់ថ្មីៗ 📥</h2></header>
+    <div id="list">
+        <div class="empty">រង់ចាំការកម្មង់ថ្មី...</div>
+    </div>
+</div>
+
+<script>
+    function check() {
+        const data = localStorage.getItem('lastOrder');
+        const list = document.getElementById('list');
+        if(data) {
+            const o = JSON.parse(data);
+            list.innerHTML = `
+                <div class="order-notif">
+                    <h4>🔔 មកដល់ថ្មី!</h4>
+                    <div class="detail"><b>អតិថិជន:</b> ${o.customer}</div>
+                    <div class="detail"><b>ថ្ងៃកំណើត:</b> ${o.dob}</div>
+                    <div class="detail"><b>ទីតាំង:</b> ${o.loc}</div>
+                    <div class="items-box"><b>ទំនិញ:</b> ${o.items.join(', ')}</div>
+                    <div style="color: blue; font-size: 12px; margin-bottom: 10px;">📎 មានភ្ជាប់រូបអត្តសញ្ញាណប័ណ្ណ</div>
+                    <button class="btn-ship" onclick="ship()">បញ្ជូនទៅអតិថិជន</button>
+                </div>
+            `;
+        }
+    }
+    function ship() {
+        alert("កំពុងដឹកជញ្ជូន!");
+        localStorage.removeItem('lastOrder');
+        location.reload();
+    }
+    setInterval(check, 2000);
+    check();
+</script>
+</body>
+</html>
